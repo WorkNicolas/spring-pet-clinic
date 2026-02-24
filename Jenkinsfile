@@ -2,8 +2,8 @@ pipeline {
   agent any
 
   triggers {
-    // Every 5 minutes, Mondays only
-    cron('H/5 * * * 1')
+    // Every minute on Tuesdays (used for today: 2026-02-24)
+    cron('* * * * 2')
   }
 
   options {
