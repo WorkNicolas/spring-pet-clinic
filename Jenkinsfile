@@ -42,6 +42,13 @@ pipeline {
       post {
         always {
           archiveArtifacts artifacts: 'target/site/jacoco/**', fingerprint: true, allowEmptyArchive: true
+          script {
+            try {
+              recordCoverage tools: [jacoco(pattern: 'target/site/jacoco/jacoco.xml')]
+            } catch (Exception e) {
+              echo 'Coverage plugin is not installed or recordCoverage is unavailable. JaCoCo HTML is still archived in artifacts.'
+            }
+          }
         }
       }
     }
